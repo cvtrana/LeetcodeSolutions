@@ -18,15 +18,6 @@ public:
              rightgreat.push_back(right);
             }
         reverse(rightgreat.begin() , rightgreat.end());
-        cout << "leftgreat" << endl;
-        for(int i=0;i<n;i++){
-            cout << leftgreat[i] <<" ";
-        }
-        cout << endl;
-        cout << "rightgreat" << endl;
-        for(int i=0;i<n;i++){
-            cout << rightgreat[i] <<" ";
-        }
         cout << endl;
         int sum = 0;
         for(int i = 0 ; i<n;i++){
