@@ -9,15 +9,13 @@ public:
         
         while(r < n){
             store[s[r]]++;
-             while(store[s[r]]>1)    
+             while(store[s[r]]>1) // if character matches 
             { 
                 store[s[l]]--;   
                 l++;         
             }
             maxi = max(maxi,r - l +1);
             r++;
-            
-            
             
         }
         return maxi;
