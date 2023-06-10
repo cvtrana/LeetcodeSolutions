@@ -9,16 +9,27 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        map<ListNode*,bool> m;
         
-        ListNode* temp = head;
+        if(head==NULL || head->next==NULL){
+            return false;
+        }
+        // approach 2 : by creating slow and fast pointers
         
-        while(temp!=NULL){
-            if(m[temp]==1){
+        
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        while(slow!=NULL && fast!=NULL){
+            fast = fast->next;
+            if(fast!=NULL){
+                fast = fast->next;
+            }
+            
+            slow = slow->next;
+            if(slow==fast){ // detect a loop 
                 return true;
             }
-            m[temp]=1;
-            temp = temp->next;
+            
         }
         return false;
         
