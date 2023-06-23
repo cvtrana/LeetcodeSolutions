@@ -1,28 +1,40 @@
 class Solution {
-    bool ex(int ind, int openingBracket, string &s, vector<vector<int>> &dp){
-        if(ind==s.size()) return (openingBracket==0);
-
-        if(dp[ind][openingBracket]!=-1) return dp[ind][openingBracket];
-
-        bool ans=false;
-        if(s[ind]=='*'){
-            ans|=ex(ind+1,openingBracket+1,s,dp);
-            if(openingBracket) ans|=ex(ind+1,openingBracket-1,s,dp);
-            ans|=ex(ind+1,openingBracket,s,dp);
-        }else{
-            if(s[ind]=='('){
-                ans=ex(ind+1,openingBracket+1,s,dp);
-            }else{
-                if(openingBracket) ans=ex(ind+1,openingBracket-1,s,dp);
-            }
-        }
-
-        return dp[ind][openingBracket]=ans;
-    }
-
 public:
     bool checkValidString(string s) {
-        vector<vector<int>> dp(s.size(), vector<int>(s.size(),-1));
-        return ex(0,0,s,dp);
+        
+        stack<int> open,star;
+        int len = s.length();
+        
+        for(int i=0;s[i]!='\0';++i)
+        {
+            if(s[i]=='(')
+                open.push(i);
+            else if(s[i]=='*')
+                star.push(i);
+            else
+            {
+                if(!open.empty())
+                    open.pop();
+                else if(!star.empty())
+                    star.pop();
+                else
+                    return false;
+            }
+        }
+        
+        //Now process leftover opening brackets
+        while(!open.empty())
+        {
+            if(star.empty())
+                return false;
+            else if(open.top() < star.top())
+            {
+                open.pop();
+                star.pop();
+            }
+            else    //CASE: open.top() > star.top()
+                return false;
+        }
+        return true;
     }
 };
