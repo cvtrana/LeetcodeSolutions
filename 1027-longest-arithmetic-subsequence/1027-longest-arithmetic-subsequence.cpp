@@ -9,7 +9,7 @@ public:
         {
             for(int j=0;j<i;j++)
             {
-                int diff=nums[i]-nums[j]+500;
+                int diff=nums[j]-nums[i]+500; // positive 
                 dp[i][diff]=max(dp[i][diff],dp[j][diff]+1);
                 ans=max(dp[i][diff],ans);
             }
