@@ -3,7 +3,7 @@ class Solution {
         row = n-1-(s-1)/n;
         col = (s-1)%n;
         if((n%2==1 && row%2==1)||(n%2==0 && row%2==0))
-            col = n-1-col; // finding row and col using cell value and baord size
+            col = n-1-col; // finding row and col using cell value and board size
     }
 public:
     int snakesAndLadders(vector<vector<int>>& board) {
